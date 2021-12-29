@@ -10,13 +10,12 @@ import (
 	"strings"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/jmoiron/sqlx"
 )
 
-var Db *sqlx.DB
+var Db *sql.DB
 
 func Server() {
-	db, err := sqlx.Open("odbc", "DSN=Informix; DATABASE=rx21c")
+	db, err := sql.Open("odbc", "DSN=Informix; DATABASE=rx21c")
 	Check(err)
 	Db = db
 
@@ -30,7 +29,7 @@ func Check(err error) {
 }
 
 func Local() {
-	db, err := sqlx.Open("mysql", "root:12345@tcp(localhost:3306)/mysql")
+	db, err := sql.Open("mysql", "root:12345@tcp(localhost:3306)/mysql")
 	Check(err)
 	Db = db
 
